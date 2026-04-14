@@ -1,0 +1,49 @@
+# ─── EE-AL Pipeline Configuration: PASCAL VOC 2012 (Aug) ──────────────────────
+
+dataset:
+  name: pascal_voc
+  # Point this to your VOC root (containing JPEGImages/ and SegmentationClassAug/)
+  data_dir: /shared/scratch/0/home/v_rishit_saxena/al_ee/al_ee_pipeline/datasets/pascal_voc
+  num_classes: 21
+  ignore_label: 255
+  # Crop size for training (must divide by model output stride cleanly)
+  input_size: [321, 321]
+  # Pool lists – using the existing files from best_practices_ALSS
+  train_list: /shared/scratch/0/home/v_rishit_saxena/al_ee/best_practices_ALSS/data/pools/pascal_voc/train_aug.txt
+  val_list:   /shared/scratch/0/home/v_rishit_saxena/al_ee/best_practices_ALSS/data/pools/pascal_voc/val.txt
+
+model:
+  backbone: resnet101
+  pretrained: true         # ImageNet pretrained backbone
+  n_exits: 4               # Number of EE heads (more → denser exits)
+  ee_distribution: fine    # fine | linear | pareto | gold_ratio  (EENet-style FLOPS thresholds)
+  exit_bottleneck_ch: 128  # Channels in exit reduce convolution
+  # input_shape used only for FLOPS profiling (must match input_size)
+  input_shape: [3, 321, 321]
+
+active_learning:
+  seed: 42
+  # Initial labeled set size (fraction of train_aug, ~10582 images)
+  initial_budget: 0.02     # ≈ 212 images
+  # Query budget per AL round (fraction of train_aug)
+  query_budget: 0.02       # ≈ 212 images per round
+  n_rounds: 5              # Number of AL rounds (after initial training)
+  # strategy options: random | entropy | bald | badge | coreset | ee_al
+  strategy: ee_al
+
+training:
+  epochs_per_round: 50
+  batch_size: 8
+  lr: 0.007
+  momentum: 0.9
+  weight_decay: 0.0001
+  num_workers: 4
+
+bald:
+  mc_passes: 10    # Number of MC-Dropout forward passes
+  dropout_p: 0.5   # Dropout probability injected for BALD
+
+# Paths for saving results and checkpoints
+output:
+  results_dir: ./results
+  checkpoint_dir: ./checkpoints

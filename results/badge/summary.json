@@ -1,0 +1,141 @@
+{
+  "strategy": "badge",
+  "exp_name": "badge",
+  "rounds": [
+    {
+      "round": 0,
+      "n_labeled": 29,
+      "n_unlabeled": 1435,
+      "final_miou": 0.213056,
+      "timestamp": "2026-04-14T11:58:11.903059",
+      "strategy": "badge",
+      "avg_train_loss": 1.170691
+    },
+    {
+      "round": 1,
+      "n_labeled": 58,
+      "n_unlabeled": 1406,
+      "final_miou": 0.340525,
+      "timestamp": "2026-04-14T12:14:01.444709",
+      "strategy": "badge",
+      "avg_train_loss": 0.882683
+    },
+    {
+      "round": 2,
+      "n_labeled": 87,
+      "n_unlabeled": 1377,
+      "final_miou": 0.42299,
+      "timestamp": "2026-04-14T12:27:35.344250",
+      "strategy": "badge",
+      "avg_train_loss": 0.765747
+    },
+    {
+      "round": 3,
+      "n_labeled": 116,
+      "n_unlabeled": 1348,
+      "final_miou": 0.483111,
+      "timestamp": "2026-04-14T12:46:00.848367",
+      "strategy": "badge",
+      "avg_train_loss": 0.672405
+    },
+    {
+      "round": 4,
+      "n_labeled": 145,
+      "n_unlabeled": 1319,
+      "final_miou": 0.526358,
+      "timestamp": "2026-04-14T13:07:57.274173",
+      "strategy": "badge",
+      "avg_train_loss": 0.61011
+    },
+    {
+      "round": 5,
+      "n_labeled": 174,
+      "n_unlabeled": 1290,
+      "final_miou": 0.561556,
+      "timestamp": "2026-04-14T13:30:59.799354",
+      "strategy": "badge",
+      "avg_train_loss": 0.555558
+    }
+  ],
+  "best_miou": 0.561556,
+  "miou_curve": [
+    0.213056,
+    0.340525,
+    0.42299,
+    0.483111,
+    0.526358,
+    0.561556
+  ],
+  "labeled_curve": [
+    29,
+    58,
+    87,
+    116,
+    145,
+    174
+  ],
+  "config": {
+    "dataset": {
+      "name": "pascal_voc",
+      "data_dir": "/shared/scratch/0/home/v_rishit_saxena/al_ee/al_ee_pipeline/datasets/pascal_voc",
+      "num_classes": 21,
+      "ignore_label": 255,
+      "input_size": [
+        321,
+        321
+      ],
+      "train_list": "/shared/scratch/0/home/v_rishit_saxena/al_ee/best_practices_ALSS/data/pools/pascal_voc/train_aug.txt",
+      "val_list": "/shared/scratch/0/home/v_rishit_saxena/al_ee/best_practices_ALSS/data/pools/pascal_voc/val.txt"
+    },
+    "model": {
+      "backbone": "resnet101",
+      "pretrained": true,
+      "n_exits": 4,
+      "ee_distribution": "fine",
+      "exit_bottleneck_ch": 128,
+      "input_shape": [
+        3,
+        321,
+        321
+      ],
+      "num_classes": 21
+    },
+    "active_learning": {
+      "seed": 42,
+      "initial_budget": 0.02,
+      "query_budget": 0.02,
+      "n_rounds": 5,
+      "strategy": "ee_al"
+    },
+    "training": {
+      "epochs_per_round": 50,
+      "batch_size": 8,
+      "lr": 0.007,
+      "momentum": 0.9,
+      "weight_decay": 0.0001,
+      "num_workers": 4
+    },
+    "bald": {
+      "mc_passes": 10,
+      "dropout_p": 0.5
+    },
+    "output": {
+      "results_dir": "./results",
+      "checkpoint_dir": "./checkpoints"
+    }
+  },
+  "n_exits": 4,
+  "exit_positions": [
+    6,
+    8,
+    10,
+    11
+  ],
+  "exit_cost_ratios": [
+    0.0531550458283536,
+    0.11380148890601773,
+    0.16533207254911084,
+    0.1910973643706574,
+    1.0
+  ]
+}

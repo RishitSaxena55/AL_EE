@@ -1,0 +1,22 @@
+# EE-AL Pipeline Requirements
+# Install with: pip install -r requirements.txt
+# NOTE: PyTorch with CUDA 11.5 must be installed separately via setup_env.sh
+#   pip install torch==1.11.0+cu115 torchvision==0.12.0+cu115 --extra-index-url https://download.pytorch.org/whl/cu115
+
+# Core ML
+numpy>=1.21.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+Pillow>=8.3.0
+opencv-python>=4.5.0
+
+# Logging & utilities
+tensorboard>=2.8.0
+tqdm>=4.62.0
+pyyaml>=5.4.0
+
+# Optional – for BADGE scipy-based pairwise distances
+# (scikit-learn already covers this)
+
+# Testing
+pytest>=7.0.0

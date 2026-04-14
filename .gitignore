@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# Virtual envs / conda
+.env
+.venv
+env/
+
+# Datasets (too large for git)
+datasets/
+data/pool_lists/
+
+# Checkpoints (too large for git)
+checkpoints/
+
+# Results figures (optional: remove line below to track result CSVs/figures)
+results/figures/
+
+# Keep result CSVs and summary JSONs
+!results/*/round_results.csv
+!results/*/summary.json
+!results/*/selected_indices/
+
+# Logs / TensorBoard
+runs/
+results/*/tensorboard/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
