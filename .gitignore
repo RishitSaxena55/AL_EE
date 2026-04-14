@@ -23,10 +23,11 @@ checkpoints/
 # Results figures (optional: remove line below to track result CSVs/figures)
 results/figures/
 
-# Keep result CSVs and summary JSONs
+# Keep result CSVs, summary JSONs, selected indices, and figures
 !results/*/round_results.csv
 !results/*/summary.json
 !results/*/selected_indices/
+!results/figures/
 
 # Logs / TensorBoard
 runs/

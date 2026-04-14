@@ -98,7 +98,33 @@ ResNet-101 Backbone (ImageNet pretrained)
 > **AUC** = Area under the mIoU curve (normalized), measures *sustained* performance across all rounds.  
 > **EE-AL achieves the highest AUC** — it consistently identifies the best samples in the critical early rounds when labeled data is most scarce.
 
+### 📊 Full Benchmark Dashboard
+
+![Dashboard](results/figures/00_dashboard.png)
+
+### mIoU Learning Curve
+
+![mIoU Curve](results/figures/01_miou_curve.png)
+
+### Gain Over Random Sampling
+
+![Delta vs Random](results/figures/02_delta_vs_random.png)
+
+### Area Under Curve (AUC) Summary
+
+![AUC Bar Chart](results/figures/05_auc_bar.png)
+
+### Annotation Efficiency
+
+![Annotation Efficiency](results/figures/04_annotation_efficiency.png)
+
+### Training Loss Curves
+
+![Training Loss](results/figures/03_training_loss.png)
+
 ### Per-Exit mIoU Breakdown (EE-AL)
+
+![Exit Breakdown](results/figures/06_exit_breakdown.png)
 
 | | Exit 0 (shallow) | Exit 1 | Exit 2 | Exit 3 (deep) | **Final (ASPP)** |
 |---|---|---|---|---|---|
