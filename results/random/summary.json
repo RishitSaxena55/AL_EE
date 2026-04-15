@@ -4,75 +4,75 @@
   "rounds": [
     {
       "round": 0,
-      "n_labeled": 29,
-      "n_unlabeled": 1435,
-      "final_miou": 0.212736,
-      "timestamp": "2026-04-14T02:57:39.011879",
+      "n_labeled": 211,
+      "n_unlabeled": 10371,
+      "final_miou": 0.554569,
+      "timestamp": "2026-04-14T18:59:26.851138",
       "strategy": "random",
-      "avg_train_loss": 1.170244
+      "avg_train_loss": 1.000849
     },
     {
       "round": 1,
-      "n_labeled": 58,
-      "n_unlabeled": 1406,
-      "final_miou": 0.342893,
-      "timestamp": "2026-04-14T03:07:43.798641",
+      "n_labeled": 422,
+      "n_unlabeled": 10160,
+      "final_miou": 0.619665,
+      "timestamp": "2026-04-14T19:34:09.736135",
       "strategy": "random",
-      "avg_train_loss": 0.728417
+      "avg_train_loss": 0.803749
     },
     {
       "round": 2,
-      "n_labeled": 87,
-      "n_unlabeled": 1377,
-      "final_miou": 0.427244,
-      "timestamp": "2026-04-14T03:20:56.682478",
+      "n_labeled": 633,
+      "n_unlabeled": 9949,
+      "final_miou": 0.649062,
+      "timestamp": "2026-04-14T20:21:14.816196",
       "strategy": "random",
-      "avg_train_loss": 0.642973
+      "avg_train_loss": 0.682865
     },
     {
       "round": 3,
-      "n_labeled": 116,
-      "n_unlabeled": 1348,
-      "final_miou": 0.489773,
-      "timestamp": "2026-04-14T03:38:05.140426",
+      "n_labeled": 844,
+      "n_unlabeled": 9738,
+      "final_miou": 0.659057,
+      "timestamp": "2026-04-14T21:17:11.210754",
       "strategy": "random",
-      "avg_train_loss": 0.577568
+      "avg_train_loss": 0.630311
     },
     {
       "round": 4,
-      "n_labeled": 145,
-      "n_unlabeled": 1319,
-      "final_miou": 0.518114,
-      "timestamp": "2026-04-14T03:59:34.889203",
+      "n_labeled": 1055,
+      "n_unlabeled": 9527,
+      "final_miou": 0.660103,
+      "timestamp": "2026-04-14T22:12:06.381833",
       "strategy": "random",
-      "avg_train_loss": 0.543218
+      "avg_train_loss": 0.578805
     },
     {
       "round": 5,
-      "n_labeled": 174,
-      "n_unlabeled": 1290,
-      "final_miou": 0.542389,
-      "timestamp": "2026-04-14T04:44:29.439888",
+      "n_labeled": 1266,
+      "n_unlabeled": 9316,
+      "final_miou": 0.665949,
+      "timestamp": "2026-04-14T23:33:46.264977",
       "strategy": "random",
-      "avg_train_loss": 0.485136
+      "avg_train_loss": 0.542438
     }
   ],
-  "best_miou": 0.542389,
+  "best_miou": 0.665949,
   "miou_curve": [
-    0.212736,
-    0.342893,
-    0.427244,
-    0.489773,
-    0.518114,
-    0.542389
+    0.554569,
+    0.619665,
+    0.649062,
+    0.659057,
+    0.660103,
+    0.665949
   ],
   "labeled_curve": [
-    29,
-    58,
-    87,
-    116,
-    145,
-    174
+    211,
+    422,
+    633,
+    844,
+    1055,
+    1266
   ],
   "config": {
     "dataset": {

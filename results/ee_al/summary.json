@@ -4,75 +4,75 @@
   "rounds": [
     {
       "round": 0,
-      "n_labeled": 29,
-      "n_unlabeled": 1435,
-      "final_miou": 0.212657,
-      "timestamp": "2026-04-13T19:57:21.618786",
+      "n_labeled": 211,
+      "n_unlabeled": 10371,
+      "final_miou": 0.5562,
+      "timestamp": "2026-04-14T18:59:26.058702",
       "strategy": "ee_al",
-      "avg_train_loss": 1.170195
+      "avg_train_loss": 1.000597
     },
     {
       "round": 1,
-      "n_labeled": 58,
-      "n_unlabeled": 1406,
-      "final_miou": 0.351521,
-      "timestamp": "2026-04-13T20:05:34.112778",
+      "n_labeled": 422,
+      "n_unlabeled": 10160,
+      "final_miou": 0.606051,
+      "timestamp": "2026-04-14T20:04:06.993807",
       "strategy": "ee_al",
-      "avg_train_loss": 0.846675
+      "avg_train_loss": 1.047891
     },
     {
       "round": 2,
-      "n_labeled": 87,
-      "n_unlabeled": 1377,
-      "final_miou": 0.404263,
-      "timestamp": "2026-04-13T20:15:04.171452",
+      "n_labeled": 633,
+      "n_unlabeled": 9949,
+      "final_miou": 0.641536,
+      "timestamp": "2026-04-14T20:45:44.147055",
       "strategy": "ee_al",
-      "avg_train_loss": 0.748744
+      "avg_train_loss": 0.992457
     },
     {
       "round": 3,
-      "n_labeled": 116,
-      "n_unlabeled": 1348,
-      "final_miou": 0.448735,
-      "timestamp": "2026-04-13T20:27:02.154725",
+      "n_labeled": 844,
+      "n_unlabeled": 9738,
+      "final_miou": 0.65969,
+      "timestamp": "2026-04-14T21:48:37.305344",
       "strategy": "ee_al",
-      "avg_train_loss": 0.717052
+      "avg_train_loss": 0.947625
     },
     {
       "round": 4,
-      "n_labeled": 145,
-      "n_unlabeled": 1319,
-      "final_miou": 0.506347,
-      "timestamp": "2026-04-13T20:40:23.780675",
+      "n_labeled": 1055,
+      "n_unlabeled": 9527,
+      "final_miou": 0.670791,
+      "timestamp": "2026-04-14T22:51:53.866713",
       "strategy": "ee_al",
-      "avg_train_loss": 0.717066
+      "avg_train_loss": 0.897464
     },
     {
       "round": 5,
-      "n_labeled": 174,
-      "n_unlabeled": 1290,
-      "final_miou": 0.536606,
-      "timestamp": "2026-04-13T21:01:34.223386",
+      "n_labeled": 1266,
+      "n_unlabeled": 9316,
+      "final_miou": 0.671461,
+      "timestamp": "2026-04-15T00:30:32.161914",
       "strategy": "ee_al",
-      "avg_train_loss": 0.692081
+      "avg_train_loss": 0.83953
     }
   ],
-  "best_miou": 0.536606,
+  "best_miou": 0.671461,
   "miou_curve": [
-    0.212657,
-    0.351521,
-    0.404263,
-    0.448735,
-    0.506347,
-    0.536606
+    0.5562,
+    0.606051,
+    0.641536,
+    0.65969,
+    0.670791,
+    0.671461
   ],
   "labeled_curve": [
-    29,
-    58,
-    87,
-    116,
-    145,
-    174
+    211,
+    422,
+    633,
+    844,
+    1055,
+    1266
   ],
   "config": {
     "dataset": {

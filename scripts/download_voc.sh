@@ -36,18 +36,38 @@ fi
 
 # Download SBD augmented annotations (SegmentationClassAug)
 if [ ! -d "${VOC_DIR}/SegmentationClassAug" ]; then
-    echo "[3/4] Downloading SBD augmented annotations (benchmark.tgz)..."
-    wget -q --show-progress -O /tmp/benchmark.tgz \
-        http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/semantic_contours/benchmark.tgz
-    echo "[4/4] Extracting augmented annotations..."
-    mkdir -p /tmp/sbd_tmp
-    tar -xf /tmp/benchmark.tgz -C /tmp/sbd_tmp
     mkdir -p "${VOC_DIR}/SegmentationClassAug"
-    # SBD stores .mat files, but we need PNGs converted
-    # Use pre-converted PNGs if available, otherwise note manual step
-    if ls /tmp/sbd_tmp/benchmark/dataset/cls/*.mat >/dev/null 2>&1; then
-        echo "Converting SBD .mat files to PNGs..."
-        python -c "
+
+    echo "[3/4] Trying to download pre-converted SegmentationClassAug PNGs..."
+
+    # Mirror 1: Dropbox (pre-converted PNGs, most reliable)
+    DROPBOX_URL="https://www.dropbox.com/s/oeu149j8qtbs1x0/SegmentationClassAug.zip?dl=1"
+    DOWNLOADED=0
+
+    if wget -q --show-progress --timeout=30 -O /tmp/SegmentationClassAug.zip "${DROPBOX_URL}" 2>/dev/null; then
+        echo "[4/4] Extracting pre-converted PNGs..."
+        unzip -q /tmp/SegmentationClassAug.zip -d /tmp/aug_tmp/
+        # Handle nested folder structure
+        if [ -d "/tmp/aug_tmp/SegmentationClassAug" ]; then
+            mv /tmp/aug_tmp/SegmentationClassAug/* "${VOC_DIR}/SegmentationClassAug/"
+        else
+            mv /tmp/aug_tmp/*/*.png "${VOC_DIR}/SegmentationClassAug/" 2>/dev/null || \
+            mv /tmp/aug_tmp/*.png "${VOC_DIR}/SegmentationClassAug/" 2>/dev/null || true
+        fi
+        rm -rf /tmp/aug_tmp /tmp/SegmentationClassAug.zip
+        DOWNLOADED=1
+        echo "[4/4] SegmentationClassAug extracted ($(ls ${VOC_DIR}/SegmentationClassAug/*.png | wc -l) PNGs)."
+    fi
+
+    # Mirror 2: Berkeley original .mat files (fallback, convert with scipy)
+    if [ "${DOWNLOADED}" = "0" ]; then
+        echo "[3/4] Dropbox failed. Trying Berkeley SBD .mat files..."
+        if wget -q --show-progress --timeout=60 -O /tmp/benchmark.tgz \
+            "http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/semantic_contours/benchmark.tgz" 2>/dev/null; then
+            echo "[4/4] Extracting and converting SBD .mat → PNG..."
+            mkdir -p /tmp/sbd_tmp
+            tar -xf /tmp/benchmark.tgz -C /tmp/sbd_tmp
+            python -c "
 import scipy.io, numpy as np, os
 from PIL import Image
 from tqdm import tqdm
@@ -59,10 +79,21 @@ for f in tqdm(files, desc='Converting'):
     arr = mat['GTcls'][0]['Segmentation'][0].astype(np.uint8)
     Image.fromarray(arr).save(os.path.join(out_dir, f.replace('.mat', '.png')))
 "
+            rm -rf /tmp/sbd_tmp /tmp/benchmark.tgz
+            DOWNLOADED=1
+        fi
     fi
-    rm -rf /tmp/sbd_tmp /tmp/benchmark.tgz
+
+    if [ "${DOWNLOADED}" = "0" ]; then
+        echo ""
+        echo "⚠️  Automatic download failed. Please manually download SegmentationClassAug:"
+        echo "   Option A (Dropbox): https://www.dropbox.com/s/oeu149j8qtbs1x0/SegmentationClassAug.zip"
+        echo "   Option B (SBD):     http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/semantic_contours/benchmark.tgz"
+        echo "   Extract PNGs to: ${VOC_DIR}/SegmentationClassAug/"
+        rmdir "${VOC_DIR}/SegmentationClassAug" 2>/dev/null || true
+    fi
 else
-    echo "[3-4/4] SegmentationClassAug already present."
+    echo "[3-4/4] SegmentationClassAug already present ($(ls ${VOC_DIR}/SegmentationClassAug/*.png 2>/dev/null | wc -l) PNGs)."
 fi
 
 echo ""
